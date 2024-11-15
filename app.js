@@ -4,7 +4,6 @@ const express = require("express");
 const path = require("node:path");
 const app = express();
 const setupSession = require('./config/session');
-const passport = require('./config/passport'); 
 const {setupDatabase} = require('./db/dbSetup')
 
 // --- Route Imports ---

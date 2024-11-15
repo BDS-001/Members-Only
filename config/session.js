@@ -1,4 +1,4 @@
-const passport = require('./config/passport')
+const passport = require('./passport')
 const session = require('express-session');
 const pool = require('../db/pool')
 const pgSession = require('connect-pg-simple')(session);
@@ -13,7 +13,7 @@ function setupSession(app) {
     if (!secret) {
         throw new Error('SESSION_SECRET environment variable is required');
     }
-    
+
     app.use(session({ 
         secret: secret, 
         resave: false, 
