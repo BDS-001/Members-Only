@@ -3,10 +3,12 @@ require("dotenv").config();
 const express = require("express");
 const path = require("node:path");
 const app = express();
+const setupSession = require('./config/session');
+const passport = require('./config/passport'); 
 const {setupDatabase} = require('./db/dbSetup')
 
 // --- Route Imports ---
-const indexRouter = require('./routes/indexRouter')
+const indexRouter = require('./routes/indexRouter');
 
 // --- View Engine Setup ---
 app.set("views", path.join(__dirname, "views"));
@@ -17,6 +19,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+setupSession(app);
 
 // --- Routes ---
 app.use('/', indexRouter)
