@@ -5,6 +5,7 @@ const path = require("node:path");
 const app = express();
 const setupSession = require('./config/session');
 const {setupDatabase} = require('./db/dbSetup')
+const addUserToLocals = require('./middleware/addUserToLocals')
 
 // --- Route Imports ---
 const indexRouter = require('./routes/indexRouter');
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 setupSession(app);
+app.use(addUserToLocals);
 
 // --- Routes ---
 app.use('/', indexRouter)
