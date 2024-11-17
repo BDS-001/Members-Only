@@ -7,7 +7,8 @@ CREATE TABLE users (
     last_name VARCHAR( 255 ) NOT NULL,
     username VARCHAR( 255 ) NOT NULL UNIQUE,
     password VARCHAR ( 255 ) NOT NULL,
-    is_member BOOLEAN DEFAULT false
+    is_member BOOLEAN DEFAULT false,
+    is_admin BOOLEAN DEFAULT false
 );
 
 CREATE TABLE messages (
