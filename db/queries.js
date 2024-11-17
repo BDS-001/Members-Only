@@ -6,9 +6,15 @@ async function addUser(user) {
 }
 
 async function getAllMessages() {
-    return await db.query('SELECT * FROM messages')
+    return await pool.query('SELECT * FROM messages')
+}
+
+async function addNewMessage(userId, message) {
+    await pool.query('INSERT INTO messages (user_id, message) VALUES ($1, $2)', [userId, message])
 }
 
 module.exports = {
     addUser,
+    getAllMessages,
+    addNewMessage,
 }

@@ -1,4 +1,3 @@
-const router = require("express").Router();
 const bcrypt = require('bcryptjs');
 const passport = require('../config/passport')
 const db = require('../db/queries')

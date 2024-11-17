@@ -14,7 +14,7 @@ CREATE TABLE messages (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id INT NOT NULL,
     message TEXT NOT NULL,
-    timestamp TIMESTAMPTZ NOT NULL,
+    timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 `
