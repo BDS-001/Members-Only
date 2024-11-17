@@ -6,7 +6,7 @@ async function addUser(user) {
 }
 
 async function getAllMessages() {
-    return await pool.query('SELECT * FROM messages')
+    return await pool.query('SELECT messages.id, messages.message, messages.timestamp, users.username FROM messages JOIN users ON messages.user_id = users.id')
 }
 
 async function addNewMessage(userId, message) {

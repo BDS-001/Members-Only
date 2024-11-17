@@ -2,8 +2,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('../config/passport')
 const db = require('../db/queries')
 
-function getHomepage(req, res) {
-    res.render("index")
+async function getHomepage(req, res) {
+    const result = await db.getAllMessages()
+    const messages = result.rows
+    res.render("index", {messages: messages})
 }
 
 function getLoginPage(req, res) {

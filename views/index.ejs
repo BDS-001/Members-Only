@@ -13,5 +13,11 @@
     <h1>Not Logged In%></h1>
     <a href="/login">login/sign up</a>
   <%}%>
+  <% messages.forEach(message => { %>
+      <p><%= message.id %></p>
+      <p><%= message.username %></p>
+      <p><%= message.message %></p>
+      <p><%= message.timestamp %></p>
+  <% }); %>
 </body>
 </html>
