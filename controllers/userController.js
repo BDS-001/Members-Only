@@ -7,6 +7,10 @@ function getHomepage(req, res) {
     res.render("index")
 }
 
+function getLoginPage(req, res) {
+  res.render("login")
+}
+
 function getUserSignUp(req, res) {
     res.render('sign-up-form')
 }
@@ -49,4 +53,5 @@ module.exports = {
     getUserSignUp,
     postLogIn,
     postUserSignUp,
+    getLoginPage
 }
