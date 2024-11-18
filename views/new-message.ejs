@@ -5,6 +5,7 @@
   <title></title>
 </head>
 <body>
+    <%- include('./partials/header') %>
     <% if (locals.errors) { %>
       <% errors.forEach(error => { %>
         <div class="error"><%= error.msg %></div>
