@@ -5,19 +5,19 @@
   <title></title>
 </head>
 <body>
+  <%- include('./partials/header') %>
   <% if (locals.currentUser) {%>
     <h1>WELCOME BACK <%= currentUser.username %></h1>
-    <a href="/log-out">LOG OUT</a>
-    <a href="/new-message">new message</a>
   <% } else { %>
     <h1>Not Logged In%></h1>
-    <a href="/login">login/sign up</a>
   <%}%>
   <% messages.forEach(message => { %>
+    <div class="message">
       <p><%= message.id %></p>
       <p><%= message.username %></p>
       <p><%= message.message %></p>
       <p><%= message.timestamp %></p>
+    </div>
   <% }); %>
 </body>
 </html>
