@@ -15,6 +15,8 @@ router.get("/log-out", userController.getLogOut);
 router.get('/new-message', requireAuth.requireAuthSignedIn, messageController.getNewMessage)
 router.post('/new-message', requireAuth.requireAuthSignedIn, messageController.validateMessage, messageController.postNewMessage)
 
+router.get('/membership', userController.getMembership)
+
 router.post('/delete-message/:id', requireAuth.requireAuthAdmin, messageController.postDeleteMessage)
 
 module.exports = router

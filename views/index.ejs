@@ -13,12 +13,12 @@
   <%}%>
   <% messages.forEach(message => { %>
     <div class="message">
-      <% if (currentUser.is_admin || currentUser.is_member) {%>
+      <% if (currentUser && (currentUser.is_admin || currentUser.is_member)) {%>
         <p><%= message.username %></p>
         <p><%= message.timestamp %></p>
       <%}%>
       <p><%= message.message %></p>
-      <% if (currentUser.is_admin) {%>
+      <% if (currentUser && currentUser.is_admin) {%>
       <form action="/delete-message/<%= message.id %>" method="POST">
         <button type="submit">Delete</button>
       </form>

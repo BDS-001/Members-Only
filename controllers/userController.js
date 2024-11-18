@@ -48,11 +48,16 @@ function getLogOut(req, res, next) {
     });
 };
 
+function getMembership(req,res) {
+  res.render("membership")
+}
+
 module.exports = {
     getHomepage,
     getLogOut,
     getUserSignUp,
     postLogIn,
     postUserSignUp,
-    getLoginPage
+    getLoginPage,
+    getMembership
 }

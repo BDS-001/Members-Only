@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+    <%- include('./partials/header') %>
+    <% if (!currentUser) { %>
+        <p>sign in to check your membership</p>
+    <% } else if (currentUser.is_admin) { %>
+        <p>you are a admin</p>
+    <% } else if (currentUser.is_member) { %>
+        <p>you are a member</p>
+    <% } else { %>
+        <p>you are not member</p>
+    <% } %>
+</body>
+</html>
