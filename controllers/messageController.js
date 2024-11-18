@@ -31,8 +31,21 @@ async function postNewMessage(req, res) {
     }
 }
 
+async function postDeleteMessage(req, res) {
+    try {
+        const messageId = req.params.id
+        await db.deleteMessage(messageId)
+        res.redirect('/')
+    } catch (error) {
+        console.error('Error posting message:', error)
+        return res.status(500).json({ 
+          error: 'Failed to post message'
+        })
+    }
+}
+
 function getNewMessage(req, res) {
     res.render('new-message')
 }
 
-module.exports = {postNewMessage, getNewMessage, validateMessage}
+module.exports = {postNewMessage, getNewMessage, validateMessage, postDeleteMessage}
