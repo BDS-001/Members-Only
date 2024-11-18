@@ -9,7 +9,7 @@ router.post("/sign-up", userController.postUserSignUp);
 router.get('/login', userController.getLoginPage)
 router.post("/login", userController.postLogIn);
 router.get("/log-out", userController.getLogOut);
-router.get('/new-message', messageController.getNewMessage)
-router.post('/new-message', requireAuth, messageController.postNewMessage)
+router.get('/new-message', requireAuth, messageController.getNewMessage)
+router.post('/new-message', requireAuth, messageController.validateMessage, messageController.postNewMessage)
 
 module.exports = router
