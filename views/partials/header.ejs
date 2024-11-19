@@ -1,13 +1,15 @@
-<header>
-    <h1>Members Only</h1>
-    <nav>
-      <a href="/">Home</a>
-      <% if (locals.currentUser) {%>
-        <a href="/new-message">new message</a>
-        <a href="/membership">Membership</a>
-        <a href="/log-out">LOG OUT</a>
-      <% } else { %>
-        <a href="/login">login/sign up</a>
-      <%}%>
-    </nav>
-   </header>
+<header class="main-header">
+  <div class="container">
+      <h1>Members Only</h1>
+      <nav>
+          <a href="/">Home</a>
+          <% if (locals.currentUser) {%>
+              <a href="/new-message">new message</a>
+              <a href="/membership">Membership</a>
+              <a href="/log-out">LOG OUT</a>
+          <% } else { %>
+              <a href="/login">login/sign up</a>
+          <%}%>
+      </nav>
+  </div>
+</header>

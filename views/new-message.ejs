@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <%- include('./partials/header') %>
-    <% if (locals.errors) { %>
-      <% errors.forEach(error => { %>
-        <div class="error"><%= error.msg %></div>
-      <% }) %>
-    <% } %>
-    <h1>Create Message</h1>
-    <form method="POST" action="/new-message">
-        <label for="message">Message:</label>
-        <textarea 
-          id="message" 
-          name="message"
-          rows="4"
-          placeholder="Type your message here..."
-          required
-        ><%= locals.message || '' %></textarea>
-        <button type="submit">Send Message</button>
-      </form>
+    <main class="container">
+      <% if (locals.errors) { %>
+        <% errors.forEach(error => { %>
+          <div class="error"><%= error.msg %></div>
+        <% }) %>
+      <% } %>
+      <h1>Create Message</h1>
+      <form method="POST" action="/new-message">
+          <label for="message">Message:</label>
+          <textarea 
+            id="message" 
+            name="message"
+            rows="4"
+            placeholder="Type your message here..."
+            required
+          ><%= locals.message || '' %></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+    </main>
 </body>
 </html>

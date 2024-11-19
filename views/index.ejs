@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <%- include('./partials/header') %>
-  <% if (locals.currentUser) {%>
-    <h1>WELCOME BACK <%= currentUser.username %></h1>
-  <% } else { %>
-    <h1>Not Logged In%></h1>
-  <%}%>
-  <% messages.forEach(message => { %>
-    <div class="message">
-      <% if (currentUser && (currentUser.is_admin || currentUser.is_member)) {%>
-        <p><%= message.username %></p>
-        <p><%= message.timestamp %></p>
-      <%}%>
-      <p><%= message.message %></p>
-      <% if (currentUser && currentUser.is_admin) {%>
-      <form action="/delete-message/<%= message.id %>" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-      <%}%>
+  <main class="container">
+    <% if (locals.currentUser) {%>
+      <h1>WELCOME BACK <%= currentUser.username %></h1>
+    <% } else { %>
+      <h1>Not Logged In%></h1>
+    <%}%>
+    <div class="messages-grid">
+      <% messages.forEach(message => { %>
+        <div class="message">
+          <% if (currentUser && (currentUser.is_admin || currentUser.is_member)) {%>
+            <p><%= message.username %></p>
+            <p><%= message.timestamp %></p>
+          <%}%>
+          <p><%= message.message %></p>
+          <% if (currentUser && currentUser.is_admin) {%>
+          <form action="/delete-message/<%= message.id %>" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+          <%}%>
+        </div>
+      <% }); %>
     </div>
-  <% }); %>
+  </main>
 </body>
 </html>
