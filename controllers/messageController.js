@@ -9,7 +9,7 @@ const validateMessage = [
         .escape()
 ];
 
-async function postNewMessage(req, res) {
+async function postNewMessage(req, res, next) {
     try {
         const validationErrors = validationResult(req)
         if (!validationErrors.isEmpty()) {
@@ -24,10 +24,7 @@ async function postNewMessage(req, res) {
         await db.addNewMessage(userId, message)
         res.redirect('/')
     } catch (error) {
-        console.error('Error posting message:', error)
-        return res.status(500).json({ 
-          error: 'Failed to post message'
-        })
+        next(error)
     }
 }
 
@@ -37,10 +34,7 @@ async function postDeleteMessage(req, res) {
         await db.deleteMessage(messageId)
         res.redirect('/')
     } catch (error) {
-        console.error('Error posting message:', error)
-        return res.status(500).json({ 
-          error: 'Failed to post message'
-        })
+        next(error)
     }
 }
 
