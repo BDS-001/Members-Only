@@ -16,6 +16,7 @@ router.get('/new-message', requireAuth.requireAuthSignedIn, messageController.ge
 router.post('/new-message', requireAuth.requireAuthSignedIn, messageController.validateMessage, messageController.postNewMessage)
 
 router.get('/membership', userController.getMembership)
+router.post('/membership', requireAuth.requireAuthSignedIn, userController.validateSecretPasscode)
 
 router.post('/delete-message/:id', requireAuth.requireAuthAdmin, messageController.postDeleteMessage)
 

@@ -6,14 +6,27 @@
 </head>
 <body>
     <%- include('./partials/header') %>
-    <% if (!currentUser) { %>
+    <% if (!locals.currentUser) { %>
         <p>sign in to check your membership</p>
     <% } else if (currentUser.is_admin) { %>
         <p>you are a admin</p>
     <% } else if (currentUser.is_member) { %>
         <p>you are a member</p>
     <% } else { %>
-        <p>you are not member</p>
+        <p>you are currently not a member</p>
+        <form action="/membership" method="POST" class="form">
+            <div class="form-group">
+                <label for="passcode">Enter Secret Passcode:</label>
+                <input type="password" id="passcode" name="passcode" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     <% } %>
+
+    <% if (locals.errors) { %>
+        <% errors.forEach(error => { %>
+          <div class="error"><%= error.msg %></div>
+        <% }) %>
+      <% } %>
 </body>
 </html>

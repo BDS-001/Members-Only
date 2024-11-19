@@ -18,6 +18,14 @@ CREATE TABLE messages (
     timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE secrets (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    secret VARCHAR ( 255 ) NOT NULL,
+    is_active BOOLEAN DEFAULT true,
+    grants_member BOOLEAN DEFAULT false,
+    grants_admin BOOLEAN DEFAULT false
+);
 `
 
 checkTables = `

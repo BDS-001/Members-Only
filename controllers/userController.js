@@ -27,7 +27,7 @@ async function postUserSignUp(req, res, next) {
         password: hashedPassword
       }
       await db.addUser(user)
-      res.redirect("/");
+      res.redirect("/login");
     } catch(err) {
       return next(err);
     }
@@ -48,8 +48,24 @@ function getLogOut(req, res, next) {
     });
 };
 
-function getMembership(req,res) {
+function getMembership(req, res) {
   res.render("membership")
+}
+
+async function validateSecretPasscode(req, res, next) {
+  try {
+    const passcode = req.body.passcode
+    const {rows} = await db.validateSecret(passcode)
+    if (rows.length < 1) {
+      return res.render('membership', {errors: [{msg: 'invalid secret passcode'}]})
+    }
+    const {grants_member, grants_admin} = rows[0]
+    await db.updateUserStatus(req.user.id, grants_member, grants_admin)
+    res.redirect('membership')
+  } catch(err) {
+    return next(err);
+  }
+
 }
 
 module.exports = {
@@ -59,5 +75,6 @@ module.exports = {
     postLogIn,
     postUserSignUp,
     getLoginPage,
-    getMembership
+    getMembership,
+    validateSecretPasscode
 }

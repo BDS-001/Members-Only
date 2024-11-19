@@ -17,9 +17,19 @@ async function deleteMessage(id) {
     await pool.query('DELETE FROM messages WHERE id = $1', [id]);
 }
 
+async function validateSecret(secret) {
+    return await pool.query('SELECT grants_member, grants_admin FROM secrets WHERE secret = $1', [secret])
+}
+
+async function updateUserStatus(userId, membership, admin) {
+    await pool.query('UPDATE users SET is_member = $1, is_admin = $2 WHERE id = $3', [membership, admin, userId])
+}
+
 module.exports = {
     addUser,
     getAllMessages,
     addNewMessage,
-    deleteMessage
+    deleteMessage,
+    validateSecret,
+    updateUserStatus
 }
