@@ -126,14 +126,6 @@ INSERT INTO secrets (secret, is_active, grants_member, grants_admin)
 VALUES ('admin_secret_passcode', TRUE, TRUE, TRUE);
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
